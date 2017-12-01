@@ -108,7 +108,7 @@ BF_2 — алгоритм BF с правилом 2.
 Теорема. FFD(L) <= 11/9 OPT(L) + 4 для всех L и существуют примеры со сколь угодно большими значениями OPT(L), для которых FFD(L) >= 11/9 OPT(L). Кроме того, R(FFD) = R (BFD) = 11/9 = 1.22.
 
 ### Асимптотически гарантированные оценки точности
-
+![alt image](https://github.com/bindasov/examCards/blob/master/asymptotic%20accuracy%20estimates.png)
 
 
 
