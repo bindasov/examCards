@@ -38,6 +38,7 @@ void WriteToFile(std::vector<Bin> bins, const std::string outputName) {
         }
         fout << std::endl;
     }
+    fout.close();
 }
 
 void BinPacking(std::vector<std::pair<int, int> >* cards, std::vector<Bin> *bins) {
@@ -45,7 +46,9 @@ void BinPacking(std::vector<std::pair<int, int> >* cards, std::vector<Bin> *bins
         
         int min = INT_MAX;
         for (int i=0; i<bins->size(); i++) {
-            if (bins->at(i).space != bins->at(i).a4height && bins->at(i).space < min && bins->at(i).space > cards->begin()->second) {
+            if (bins->at(i).space != bins->at(i).a4height &&
+                bins->at(i).space < min &&
+                bins->at(i).space > cards->begin()->second) {
                 min = i;
             }
         }
