@@ -11,6 +11,7 @@ examCards::~examCards() {
 std::vector<std::pair<int, int> > examCards::prepareCards(std::vector<std::pair<int, int> > cards) {
     for (int i=0; i<cards.size(); i++) {
         if ((cards[i].second+upperField+field)>287) throw std::logic_error("Размер билета больше размера листа");
+        if (cards[i].second==0) throw std::logic_error("Нулевой размер билета недопустим");
         cards[i].second+=field; // учитываем место для разреза или поле снизу
     }
     std::sort(cards.begin(), cards.end(), [](auto &left, auto &right) {
