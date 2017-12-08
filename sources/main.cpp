@@ -1,5 +1,6 @@
 #include "cardsPacking.hpp"
 #include <iostream>
+#include <fstream>
 
 std::vector<std::pair<int, int> > ReadFromFile(const std::string fN) {
     int tmp = 0, id = 1;

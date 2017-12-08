@@ -2,7 +2,6 @@
 #define cardsPacking_hpp
 
 #include <vector>
-#include <fstream>
 #include <string>
 
 class examCards {
