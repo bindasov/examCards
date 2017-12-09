@@ -8,6 +8,7 @@ std::vector<std::pair<int, int> > ReadFromFile(const std::string fN) {
     
     std::ifstream fin(fN);
     while (!fin.eof()) {
+        if (!(fin >> tmp)) throw std::logic_error("Неверный формат входных данных");
         fin >> tmp;
         cards.push_back(std::make_pair(id, tmp));
         id++;
