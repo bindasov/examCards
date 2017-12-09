@@ -29,7 +29,7 @@ std::vector<std::vector<int> > examCards::BinPacking(std::vector<std::pair<int, 
         for (int i=0; i<bins.size(); i++) {
             if (bins[i].space != (bins[i].a4height-upperField) &&
                 bins[i].space < min &&
-                bins[i].space > crds.begin()->second) {
+                bins[i].space >= crds.begin()->second) {
                 min = i;
             }
         }
