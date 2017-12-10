@@ -1,8 +1,8 @@
 #include "cardsPacking.hpp"
 
 examCards::examCards() {
-    upperField = 10;
-    field = 10;
+    ulField = 10;
+    field = 8;
 }
 
 examCards::~examCards() {
@@ -10,10 +10,9 @@ examCards::~examCards() {
 
 std::vector<std::pair<int, int> > examCards::prepareCards(std::vector<std::pair<int, int> > cards) {
     for (int i=0; i<cards.size(); i++) {
-        if ((cards[i].second+upperField+field)>287) throw std::logic_error("Размер билета больше размера листа");
+        if ((cards[i].second+ulField*2)>297) throw std::logic_error("Размер билета больше размера листа");
         if (cards.size()==1 && cards[i].second==0) throw std::logic_error("Пустой входной файл");
         if (cards[i].second==0) throw std::logic_error("Нулевой размер билета недопустим");
-        cards[i].second+=field; // учитываем место для разреза или поле снизу
     }
     std::sort(cards.begin(), cards.end(), [](auto &left, auto &right) {
         return left.second > right.second;
@@ -27,7 +26,7 @@ std::vector<std::vector<int> > examCards::BinPacking(std::vector<std::pair<int, 
         
         /* Ищем наиболее заполненный лист, в который помещается данный билет */
         for (int i=0; i<bins.size(); i++) {
-            if (bins[i].space != (bins[i].a4height-upperField) &&
+            if (bins[i].space != (bins[i].a4height-ulField*2) &&
                 bins[i].space < min &&
                 bins[i].space >= crds.begin()->second) {
                 min = i;
@@ -38,14 +37,16 @@ std::vector<std::vector<int> > examCards::BinPacking(std::vector<std::pair<int, 
         if (min != INT_MAX) {
             bins[min].height.push_back(crds.begin()->first);
             bins[min].space-=crds.begin()->second;
+            if (bins[min].space >= field) bins[min].space-=field;
         }
 
         /* Иначе создаем новый пустой и "кладем" в него */
         else {
             bins.push_back(Bin()); // создаем новый лист
-            bins[bins.size()-1].space-=upperField; // учитываем поле сверху
+            bins[bins.size()-1].space-=ulField*2; // учитываем верхнее и нижнее поля
             bins[bins.size()-1].height.push_back(crds.begin()->first);
             bins[bins.size()-1].space-=crds.begin()->second;
+            if (bins[bins.size()-1].space >= field) bins[bins.size()-1].space-=field;
         }
         crds.erase(crds.begin());
     }

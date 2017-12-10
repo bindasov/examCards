@@ -6,11 +6,11 @@
 
 class examCards {
     struct Bin {
-        unsigned a4height = 297; // высота листа А4
+        unsigned const a4height = 297; // высота листа А4
         unsigned space = a4height; // свободное место на листе
         std::vector<int> height; // набор высот билетов на листе
     };
-    unsigned upperField; // верхнее поле
+    unsigned ulField; // верхнее поле
     unsigned field; // место для разреза
     std::vector<std::pair<int, int> > cards; // набор билеты (пара "номер - высота")
     std::vector<Bin> bins; // набор листов А4 типа Bin
