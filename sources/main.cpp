@@ -1,5 +1,4 @@
 #include "cardsPacking.hpp"
-#include <iostream>
 #include <fstream>
 
 std::array<int, 3> getSizes(const std::string sF) {
@@ -22,8 +21,8 @@ std::vector<std::pair<int, int> > ReadFromFile(const std::string fN) {
     
     std::ifstream fin(fN);
     while (!fin.eof()) {
-        if (fin.fail()) throw std::logic_error("Неверный формат входных данных в файле с высотами билетов");
         fin >> tmp;
+        if (fin.fail()) throw std::logic_error("Неверный формат входных данных в файле с высотами билетов");
         cards.push_back(std::make_pair(id, tmp));
         id++;
     }
