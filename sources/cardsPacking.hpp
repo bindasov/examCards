@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <string>
+#include <array>
 
 class examCards {
     struct Bin {
@@ -16,9 +17,9 @@ class examCards {
     std::vector<Bin> bins; // набор листов А4 типа Bin
     std::vector<std::vector<int> > binsv; // набор листов А4 для вывода
 public:
-    examCards();
+    examCards(std::array<int, 3> sizes);
     ~examCards();
-    std::vector<std::pair<int, int> > prepareCards(std::vector<std::pair<int, int> > cards); // первоначальная обработка экзаменационных билетов
+    std::vector<std::pair<int, int> > prepareCards(std::vector<std::pair<int, int> > cards, std::array<int, 3> sizes); // первоначальная обработка экзаменационных билетов
     std::vector<std::vector<int> > BinPacking(std::vector<std::pair<int, int> > crds); // алгоритм "упаковки"
     std::vector<std::vector<int> > binsConverter(std::vector<Bin> bins); // подготовка результата на вывод
 };
