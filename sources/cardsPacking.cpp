@@ -1,5 +1,5 @@
 #include "cardsPacking.hpp"
-#include <iostream>
+
 examCards::examCards(std::array<int, 3> sizes) {
     ulField = sizes[1];
     field = sizes[2];
@@ -12,7 +12,7 @@ std::vector<std::pair<int, int> > examCards::prepareCards(std::vector<std::pair<
     for (int i=0; i<cards.size(); i++) {
         //std::cout << cards[i].first << ":" << cards[i].second << std::endl;
         if ((cards[i].second+ulField*2)>sizes[0]) throw std::logic_error("Размер билета больше размера листа");
-        if (cards.size()==1 && cards[i].second==0) throw std::logic_error("Пустой входной файл");
+        if (cards.size()==1 && cards[i].second==0) throw std::logic_error("Пустой входной файл с высотами билетов");
         if (cards[i].second==0) throw std::logic_error("Нулевой размер билета недопустим");
     }
     std::sort(cards.begin(), cards.end(), [](auto &left, auto &right) {
