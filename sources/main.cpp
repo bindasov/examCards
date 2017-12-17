@@ -51,14 +51,11 @@ void WriteToFile(std::vector<std::vector<int> > bV, std::string outN) {
 
 int main(int argc, const char * argv[]) {
     try {
-        std::array<int, 3> szs = getSizes(argv[1]);
-        const unsigned a4height = szs[0]; // высота листа А4
-        const unsigned ulField = szs[1]; // высота верхнего/нижнего поля
-        const unsigned field = szs[2]; // место для разреза
+        std::array<int, 3> szs = getSizes(argv[1]); // szs[0] - высота листа А4, szs[1] - высота верхнего/нижнего полей, szs[2] - место для разреза
         
         examCards ec;
         std::vector<std::pair<int, int> > cards = ReadFromFile(argv[2]);
-        std::vector<std::vector<int> > result = ec.BinPacking(ec.prepareCards(cards, a4height, ulField), a4height, ulField, field);
+        std::vector<std::vector<int> > result = ec.BinPacking(ec.prepareCards(cards, szs[0], szs[1]), szs[0], szs[1], szs[2]);
         WriteToFile(result, argv[3]);
     }
     
